@@ -6,10 +6,12 @@ import "./index.css";
 import LandingPage from "./pages/landingPage";
 import { DarkTheme } from "./styles/darkTheme";
 
+
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={DarkTheme}>
-      <NavBar />
+      <NavBar  />
       <LandingPage />
     </ThemeProvider>
   </React.StrictMode>

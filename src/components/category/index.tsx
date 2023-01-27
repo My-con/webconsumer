@@ -14,14 +14,14 @@ export default function Category() {
     let results = response.results;
 
     usecards(
-      (cards = results.map((teste: any) => (
-        <CardMovie background={teste.poster_path} description={teste.overview} title={teste.title} key={teste.id}/>
+      (cards = results.map((result: any) => (
+        <CardMovie background={result.poster_path} description={result.overview} title={result.title} key={result.id}/>
       )))
     );
   }
   useEffect(() => {
     const aguard = CallMovies();
-  }, []);
+  }, [,]);
 
   return  ( <CategoryStyle> {cards} </CategoryStyle> )
 }

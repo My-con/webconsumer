@@ -4,8 +4,8 @@ type CardBackground = {background: string}
 
 export const CardMovieStyle = styled.div`
 
-    width: 15vw;
-    height: 20vw;
+    width: 18vw;
+    height: 25vw;
 
     display: flex;
     justify-content: center;
@@ -16,8 +16,17 @@ export const CardMovieStyle = styled.div`
 
     border-radius: 15px;
 
+    z-index: 1;
+    @media (max-width: 750px) {
+        width: 40vw;
+        height: 75vw;
+    }
+
     :hover{
         transform: scale(1.2);
+        z-index: 3;
+
+        border: 2px solid  ${props => props.theme.color.activeColor.primary};
     }
 
     img{
@@ -39,7 +48,8 @@ export const CardMovieStyle = styled.div`
         justify-content: center;
         flex-direction: column;
     }
+
     .info:hover{
-        display: none;
+        display: flex;
     }
 `

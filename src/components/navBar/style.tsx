@@ -6,7 +6,7 @@ export const NavBarStyle = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     
     position: -webkit-sticky;
     position: sticky;
@@ -15,16 +15,29 @@ export const NavBarStyle = styled.div`
 
     background: ${props => props.theme.color.secundary};
 
+    z-index: 5;
+
     #logo{
         height: 75%;
+        
+        @media (max-width: 750px) {
+            height: 50%;
+        }
     }
 
     .option{
         height: 100%;
-        
+        width: 25%;
         display: flex;
         align-items: center;
+        justify-content: center;
         flex-direction: row;
-        gap: 2rem;
+        gap: 10px;
+
+        padding: 0;
+
+        @media (max-width: 750px) {
+            width: 50%;
+        }
     }
 `
