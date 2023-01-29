@@ -1,27 +1,59 @@
-import { useEffect, useState } from "react";
-import CardMovie from "../cardMovie";
-import { CardMovieStyle } from "../cardMovie/style";
+import React, { useEffect, useState } from "react";
 import { CategoryStyle } from "./styled";
+import left from "../../assets/left.svg";
+import right from "../../assets/right.svg";
+import Cards from "../../services/cards";
+import data from "../../data/genres.json";
 
-export default function Category() {
+export default function Category(props: {
+  category: any;
+  type: string;
+  title: string;
+}) {
   let [cards, usecards] = useState();
+  let Title
+  let Category : any
 
-  async function CallMovies() {
-    let request = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR"
-    );
-    let response = await request.json();
-    let results = response.results;
+  data.genres.map((e) => {
+    if (e.id == props.category || e.name == props.category){
+      Title = e.name
+      Category = e.id
+    }else{
+      Category
+    }
+  });
 
-    usecards(
-      (cards = results.map((result: any) => (
-        <CardMovie background={result.poster_path} description={result.overview} title={result.title} key={result.id}/>
-      )))
-    );
+  function scroll(e: React.MouseEvent<HTMLDivElement>) {
+    let scroll = document.getElementById(props.category) as HTMLDivElement;
+
+    if (e.currentTarget.className == "back") {
+      scroll.scrollTo({
+        left: scroll.scrollLeft - scroll.clientWidth - 100,
+        behavior: "smooth",
+      });
+    } else {
+      scroll.scrollTo({
+        left: scroll.scrollLeft + scroll.clientWidth - 100,
+        behavior: "smooth",
+      });
+    }
   }
+
   useEffect(() => {
-    const aguard = CallMovies();
+    let car = new Cards(props);
+    car.createCard([cards, usecards], Category);
   }, [,]);
 
-  return  ( <CategoryStyle> {cards} </CategoryStyle> )
+  return (
+    <CategoryStyle left={left} right={right}>
+      <h1 className="category">{ Title || props.title }</h1>
+      <div className="scroll">
+        <div className="back" onClick={scroll} />
+        <div className="cards" id={props.category}>
+          {cards}
+        </div>
+        <div className="next" onClick={scroll} />
+      </div>
+    </CategoryStyle>
+  );
 }
