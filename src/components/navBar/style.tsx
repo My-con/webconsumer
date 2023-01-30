@@ -22,9 +22,18 @@ export const NavBarStyle = styled.div`
         align-items: center;
         justify-content: space-around;
         height: 100%;
-        width: 25vw;
     }
 
+    .git{
+        height: 100%;
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+    #github{
+        width: 50%;
+    }
     #logo{
         height: 75%;
         
@@ -58,9 +67,11 @@ export const NavBarStyle = styled.div`
     input{
         outline: none;
         background: ${props => props.theme.color.optionColor.primary};
+        color: ${props => props.theme.color.textColor};
         border: 2px solid  ${props => props.theme.color.activeColor.primary};
         border-radius: 15px;
         width: 100%;
-        height: 50%;
+        height: calc(50% - 10px);
+        padding: 10px;
     }
 `

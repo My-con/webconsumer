@@ -15,10 +15,7 @@ export default function NavBar() {
     <NavBarStyle>
       <div className="container">
         <img id="logo" src={Logo} alt="Logo" />
-        <ul className="option">
-          <ButtonStyle>Filmes</ButtonStyle>
-          <ButtonStyle>Séries</ButtonStyle>
-        </ul>
+
       </div>
       <div className="search">
         <input
@@ -30,14 +27,15 @@ export default function NavBar() {
               teste.state[1](
                 (teste.state[0] = <Search search={e.target.value} />)
               )
-              console.log(teste.search[0])
             } else{
               teste.state[1](teste.state[0] = <LandingPage />)
             }
           }}
         />
       </div>
-      <img id="logo" src={Github} alt="Logo" />
+        <a href="https://github.com/my-con/">
+          <img id="github" src={Github} alt="Logo" />
+        </a>
     </NavBarStyle>
   );
 }

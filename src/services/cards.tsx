@@ -13,10 +13,13 @@ export default class Cards {
     let genre = "&with_genres=" + category;
     let url = ""
     if(this.props.search != undefined){
-      url = `https://api.themoviedb.org/3/search/multi?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR&query=${this.props.search}`;
-
+      url = `https://api.themoviedb.org/3/search/multi?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR&query=${this.props.search}&region=brazil`;
+    }else if(this.props.category == "tranding/day"){
+      url = `https://api.themoviedb.org/3/trending/all/day?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR`;
+    }else if(this.props.category == "tranding/week"){
+      url = `https://api.themoviedb.org/3/trending/all/week?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR`;
     }else{
-      url = `https://api.themoviedb.org/3/discover/${this.props.type}?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR${genre}`;
+      url = `https://api.themoviedb.org/3/discover/${this.props.type}?api_key=b92ba9e9f75b0a4aeffa65e2cb28052c&language=pt-BR${genre}&region=BR`;
     }
 
     let request = await fetch(url);
