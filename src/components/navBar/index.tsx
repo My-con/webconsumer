@@ -3,14 +3,26 @@ import Logo from "../../assets/logo.svg";
 import Github from "../../assets/github.svg";
 
 import { ButtonStyle } from "../button/style";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Cont } from "../../contexts/pagecontext";
 import Search from "../search";
 import LandingPage from "../../pages/landingPage";
 
 export default function NavBar() {
-  let teste = useContext(Cont);
+  let SearchState = useContext(Cont);
 
+  useEffect(
+    () => {
+      if (SearchState.search[0] != undefined && SearchState.search[0] != ""){
+        SearchState.state[1](
+          (SearchState.state[0] = <Search search={SearchState.search[0]} />)
+        )
+      } else{
+        SearchState.state[1](SearchState.state[0] = <LandingPage />)
+      }
+    }, [SearchState.search[0]] 
+  ) 
+    
   return (
     <NavBarStyle>
       <div className="container">
@@ -22,14 +34,7 @@ export default function NavBar() {
           type="text"
           placeholder="Oque deseja ver hoje?"
           onChange={(e) => {
-            teste.search[1]( teste.search[0] = e.target.value)
-            if (e.target.value != "" ){
-              teste.state[1](
-                (teste.state[0] = <Search search={e.target.value} />)
-              )
-            } else{
-              teste.state[1](teste.state[0] = <LandingPage />)
-            }
+            SearchState.search[1]( SearchState.search[0] = e.target.value)
           }}
         />
       </div>

@@ -26,8 +26,6 @@ export default class Cards {
 
     let response = await request.json();
 
-    console.log(response.results)
-
     return response.results;
   }
 

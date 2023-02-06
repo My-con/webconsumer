@@ -1,10 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect} from "react";
 import NavBar from "../../components/navBar";
 import { Cont } from "../../contexts/pagecontext";
 import LandingPage from "../landingPage";
 
 export default function Home(){
-    let [Search, useSearch] = useState()
+    let [Search, useSearch] = useState("")
 
     let [Content, useContent] = useState(<LandingPage/>)
 

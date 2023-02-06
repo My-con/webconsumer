@@ -6,7 +6,7 @@ import { SearchStyle } from "./style";
 export default function Search(props: { search: string }) {
     
     let text = useContext(Cont)
-  let [cards, usecards] = useState();
+    let [cards, usecards] = useState();
 
   useEffect(() => {
       let car = new Cards({ category: "", type: "", search: props.search });
